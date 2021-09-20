@@ -33,4 +33,11 @@ class Ticket < ApplicationRecord
 
   belongs_to :parent, class_name: 'Ticket', optional: true
   has_many :subtickets, class_name: 'Ticket', foreign_key: 'parent_id', dependent: :destroy
+
+
+  validate :deep_nested_tickets, on: :create
+
+  def deep_nested_tickets
+    errors.add :base, :deep_nested_tickets if parent.present? && parent.parent.present?
+  end
 end

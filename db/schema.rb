@@ -10,32 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_206_130_515) do
-  create_table 'tickets', force: :cascade do |t|
-    t.integer 'creator_id', null: false
-    t.integer 'assignee_id'
-    t.integer 'parent_id'
-    t.string 'title'
-    t.string 'description'
-    t.string 'status'
-    t.date 'due_date'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['assignee_id'], name: 'index_tickets_on_assignee_id'
-    t.index ['creator_id'], name: 'index_tickets_on_creator_id'
-    t.index ['parent_id'], name: 'index_tickets_on_parent_id'
+ActiveRecord::Schema.define(version: 2020_12_06_130515) do
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "creator_id", null: false
+    t.integer "assignee_id"
+    t.integer "parent_id"
+    t.string "title"
+    t.string "description"
+    t.string "status"
+    t.date "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignee_id"], name: "index_tickets_on_assignee_id"
+    t.index ["creator_id"], name: "index_tickets_on_creator_id"
+    t.index ["parent_id"], name: "index_tickets_on_parent_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'email', null: false
-    t.string 'mobile', null: false
-    t.string 'password_diget', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "mobile", null: false
+    t.string "password_diget", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key 'tickets', 'tickets', column: 'parent_id'
-  add_foreign_key 'tickets', 'users', column: 'assignee_id'
-  add_foreign_key 'tickets', 'users', column: 'creator_id'
+  add_foreign_key "tickets", "tickets", column: "parent_id"
+  add_foreign_key "tickets", "users", column: "assignee_id"
+  add_foreign_key "tickets", "users", column: "creator_id"
 end

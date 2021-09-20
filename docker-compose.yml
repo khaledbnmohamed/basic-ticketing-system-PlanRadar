@@ -6,29 +6,48 @@ volumes:
   node_modules:
   packs:
 
+
 services:
-  ticketer: &ticketer
-    container_name: ticketer
-    hostname: ticketer
-    image: ticketer
+  # ticketer: &ticketer
+  #   container_name: ticketer
+  #   hostname: ticketer
+  #   image: ticketer
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     args:
+  #       APP_USER_ID: ${APP_USER_ID}
+  #   ports:
+  #     - 3000:3000
+  #   tty: true
+  #   stdin_open: true
+  #   volumes:
+  #     - .:/home/ticketer/ticketer:cached
+  #     - ~/.ssh:/home/ticketer/.ssh
+  #     - rails_cache:/home/ticketer/ticketer/tmp/cache
+  #     - bundle:/bundle
+  #     - node_modules:/home/ticketer/ticketer/node_modules
+  #     - packs:/home/ticketer/ticketer/public/packs
+  #   tmpfs:
+  #     - /tmp
+  #   env_file: .env
+  #   entrypoint: ["/home/ticketer/docker-entrypoint.sh"]
+  #   command: ["bundle", "exec", "rails","server","-b","0.0.0.0","-p","3000"]
+
+  ticketer_frontend:
+    container_name: ticketer_frontend
+    hostname: ticketer_frontend
+    image: ticketer_frontend
     build:
-      context: .
+      context: ./react_app
       dockerfile: Dockerfile
       args:
-        APP_USER_ID: ${APP_USER_ID}
+        APP_USER_ID: 1000
     ports:
-      - 3000:3000
+      - 3001:3001
+      - 3003:3003
     tty: true
     stdin_open: true
     volumes:
-      - .:/home/ticketer/ticketer:cached
-      - ~/.ssh:/home/ticketer/.ssh
-      - rails_cache:/home/ticketer/ticketer/tmp/cache
-      - bundle:/bundle
-      - node_modules:/home/ticketer/ticketer/node_modules
-      - packs:/home/ticketer/ticketer/public/packs
-    tmpfs:
-      - /tmp
-    env_file: .env
-    entrypoint: ["/home/ticketer/docker-entrypoint.sh"]
-    command: ["bundle", "exec", "rails","server","-b","0.0.0.0","-p","3000"]
+      - '.:/app'
+      - '/app/node_modules'

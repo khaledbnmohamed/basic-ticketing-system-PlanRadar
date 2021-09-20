@@ -7,9 +7,9 @@ module Api::V1
 
     # GET /tickets
     def index
-      tickets = @ticket.present? ? @ticket.subtickets : @user.tickets
+      tickets = @ticket.present? ? @ticket.subtickets : @user.tickets.page
 
-      render json: { tickets: TicketBlueprint.render_as_json(tickets) }
+      render json: { tickets: TicketBlueprint.render_as_json(tickets.page(params[:page])) }
     end
 
     # POST /users
