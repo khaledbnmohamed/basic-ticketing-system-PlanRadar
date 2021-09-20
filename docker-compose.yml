@@ -1,0 +1,34 @@
+version: '3.7'
+
+volumes:
+  rails_cache:
+  bundle:
+  node_modules:
+  packs:
+
+services:
+  ticketer: &ticketer
+    container_name: ticketer
+    hostname: ticketer
+    image: ticketer
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_USER_ID: ${APP_USER_ID}
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/home/ticketer/ticketer:cached
+      - ~/.ssh:/home/ticketer/.ssh
+      - rails_cache:/home/ticketer/ticketer/tmp/cache
+      - bundle:/bundle
+      - node_modules:/home/ticketer/ticketer/node_modules
+      - packs:/home/ticketer/ticketer/public/packs
+    tmpfs:
+      - /tmp
+    env_file: .env
+    entrypoint: ["/home/ticketer/docker-entrypoint.sh"]
+    command: ["bundle", "exec", "rails","server","-b","0.0.0.0","-p","3000"]
