@@ -5,6 +5,7 @@ const endpoints = {
   list_tickets: "users/:user_id/tickets",
   create_ticket: "users/:user_id/tickets",
   get_ticket: "users/:user_id/tickets/:ticket_id",
+  edit_ticket: "users/:user_id/tickets/:ticket_id",
 
 };
 

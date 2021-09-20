@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Tickets from "./Tickets";
 import TicketEdit from "./TicketEdit";
 import { listTickets } from "../tickets";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function ListingTickets() {
   const { user_id } = useParams();
