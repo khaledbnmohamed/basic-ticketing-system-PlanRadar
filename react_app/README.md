@@ -1,4 +1,4 @@
-# Sample Task Management App Using React
+# Sample Ticket Management App Using React
 
 This project uses -
 
@@ -7,7 +7,7 @@ This project uses -
 
 No state management libraries or backend!
 
-See more on [creating a task management app in ReactJS](https://techformist.com/task-management-app-reactjs-2021/).
+See more on [creating a ticket management app in ReactJS](https://techformist.com/ticket-management-app-reactjs-2021/).
 
 ## Getting Started with Create React App
 

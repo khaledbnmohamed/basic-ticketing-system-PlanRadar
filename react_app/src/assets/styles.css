@@ -4,14 +4,14 @@
   max-width: 40em;
 }
 
-.task-meta {
+.ticket-meta {
   color: grey;
   /* font-size: small; */
   margin-top: -10px;
   margin-bottom: 0.5em;
 }
 
-.task-meta img {
+.ticket-meta img {
   margin-right: 5px;
 }
 

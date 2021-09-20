@@ -118,7 +118,7 @@ Rails.application.configure do
   # Allow frontend to access the apis
   config.middleware.insert_before 0, Rack::Cors do
     allow do
-      # origins AppConfig.frontend_url
+      origins ENV['FRONTEND_URL']
       resource '/api/*', headers: :any, methods: %i[get delete put patch post options], expose: %w[bearer]
     end
   end
