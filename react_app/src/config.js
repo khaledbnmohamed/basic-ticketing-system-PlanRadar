@@ -4,6 +4,7 @@ const appBaseUrl ='http://localhost:3000/api';
 const endpoints = {
   list_tickets: "users/:user_id/tickets",
   create_ticket: "users/:user_id/tickets",
+  get_ticket: "users/:user_id/tickets/:ticket_id",
 
 };
 

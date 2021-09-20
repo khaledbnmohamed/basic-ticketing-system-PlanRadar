@@ -1,10 +1,15 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import ListingTickets  from "./components/ListingTickets";
+import ViewTicket from "./components/ViewTicket";
+
 function App() {
   return (
     <Router>
-      <Route exact path="/:user_id/tickets" component={ListingTickets} />
+      <Switch>
+        <Route exact path="/users/:user_id/tickets" component={ListingTickets} />
+        <Route exact path="/users/:user_id/tickets/:id" component={ViewTicket} />
+      </Switch>
     </Router>
   );
 }

@@ -24,7 +24,9 @@ module Api::V1
     end
 
     # GET /tickets/1
-    def show; end
+    def show
+      render json: TicketBlueprint.render(@ticket)
+    end
 
     # GET /tickets/1/edit
     def edit; end
@@ -54,7 +56,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def ticket_params
-      params.require(:ticket).permit(:assignee_id, :title, :description, :status, :due_date, :parent_id)
+      params.require(:ticket).permit(:assignee_id, :title, :description, :status, :due_date)
     end
   end
 end

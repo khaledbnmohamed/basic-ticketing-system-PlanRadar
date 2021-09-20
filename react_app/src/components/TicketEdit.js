@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 function TicketEdit({ ticket, onSaveTicket }) {
   const [description, setDescription] = useState("");
+  const history = useHistory();
   const { user_id } = useParams();
 
   const [date, setDate] = useState("");
@@ -21,6 +22,7 @@ function TicketEdit({ ticket, onSaveTicket }) {
       console.log("error")
     } else {
       console.log(resp.data)
+      history.push(`/users/${user_id}/tickets/${resp.data["id"]}`);
     }
     setTitle("");
     setDesc("");

@@ -44,7 +44,6 @@ RSpec.describe '/api/v1/users/user_id/tickets/ticket_id/' do
                    status: 'pending'
                  }
                }
-          
           expect(response).to have_http_status(:success)
           expect(response.parsed_body['title']).to eq('First ticket')
           expect(response.parsed_body['description']).to eq('desc')
