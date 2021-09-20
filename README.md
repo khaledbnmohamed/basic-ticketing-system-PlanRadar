@@ -1,5 +1,6 @@
 # Ticketer is a demo ticketing app
 
+![1.png](1.png)
 ## Make it work !
 
 * Good news! the project is dockerized so count to 3 and this section will be done
@@ -26,6 +27,9 @@
 * You can see tickets list at `http://localhost:3001/users/:user_id/tickets`
 * Click on the pen icon to edit the ticket
 * Click on the New button for new ticket
+
+![2.png](2.png)
+![e.png](e.png)
 
 ## Technical Details 
 

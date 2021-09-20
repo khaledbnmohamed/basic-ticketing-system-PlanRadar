@@ -43,7 +43,7 @@ function TicketEdit({ ticket = {}, onSaveTicket }) {
 
   return (
     <div className="card">
-      <h3>Add Ticket</h3>
+      <h3> {id ? "Edit Ticket" : "Add Ticket" }</h3>
       <form>
         <label htmlFor="Title">Title</label>
         <input
