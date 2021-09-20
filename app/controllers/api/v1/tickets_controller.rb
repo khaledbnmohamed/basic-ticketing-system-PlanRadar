@@ -14,10 +14,10 @@ module Api::V1
 
     # POST /users
     def create
-      ticket = Ticket.new(ticket_params)
+      complete_ticket = ticket_params
+      complete_ticket.merge!(parent_id: params[:ticket_id]) if params[:ticket_id].present?
+      ticket = Ticket.new(complete_ticket)
       ticket.creator = @user
-      ticket.merge(parent_id: params[:ticket_id]) if params[:ticket_id]
-
       raise Errors::CustomError.new(:bad_request, 400, ticket.errors.messages) unless ticket.save
 
       render json: TicketBlueprint.render(ticket)
@@ -54,7 +54,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def ticket_params
-      params.require(:ticket).permit(:assignee_id, :title, :description, :status, :due_date)
+      params.require(:ticket).permit(:assignee_id, :title, :description, :status, :due_date, :parent_id)
     end
   end
 end

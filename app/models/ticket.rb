@@ -38,6 +38,6 @@ class Ticket < ApplicationRecord
   validate :deep_nested_tickets, on: :create
 
   def deep_nested_tickets
-    errors.add :base, :deep_nested_tickets if parent.present? && parent.parent.present?
+    errors.add :base, "deep nested tickets error" if parent.present? && parent.parent.present?
   end
 end

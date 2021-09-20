@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users do
         resources :tickets do
-          resources :subticket, controller: 'tickets'
+          resources :subtickets, controller: 'tickets'
         end
       end
     end

@@ -44,10 +44,45 @@ RSpec.describe '/api/v1/users/user_id/tickets/ticket_id/' do
                    status: 'pending'
                  }
                }
+          
           expect(response).to have_http_status(:success)
           expect(response.parsed_body['title']).to eq('First ticket')
           expect(response.parsed_body['description']).to eq('desc')
           expect(user.tickets.count).to eq 1
+        end
+
+        it 'create subticket succsfully' do
+          post "/api/v1/users/#{user.id}/tickets/#{ticket.id}/subtickets",
+               params: {
+                 ticket: {
+                   title: 'First ticket',
+                   description: 'desc',
+                   due_date: '1-1-2025',
+                   status: 'pending'
+                 }
+               }
+
+          expect(response).to have_http_status(:success)
+          expect(response.parsed_body['title']).to eq('First ticket')
+          expect(response.parsed_body['description']).to eq('desc')
+          expect(user.tickets.count).to eq 2
+          expect(ticket.subtickets.count).to eq 1
+          expect(ticket.subtickets.first.parent_id).to eq(ticket.id)
+        end
+
+        it 'prevent deep nested tickets' do
+          subticket = FactoryBot.create(:subticket, parent: ticket)
+          post "/api/v1/users/#{user.id}/tickets/#{subticket.id}/subtickets",
+               params: {
+                 ticket: {
+                   title: 'First ticket',
+                   description: 'desc',
+                   due_date: '1-1-2025',
+                   status: 'pending'
+                 }
+               }
+          expect(response).to have_http_status(:bad_request)
+          expect( response.parsed_body["message"]["base"]).to include("deep nested tickets error")
         end
 
         it 'delets ticket succsfully' do
@@ -83,7 +118,7 @@ RSpec.describe '/api/v1/users/user_id/tickets/ticket_id/' do
         it 'list all subticket succeffully' do
           FactoryBot.create_list(:subticket, 15, parent: ticket)
 
-          get "/api/v1/users/#{user.id}/tickets/#{ticket.id}/subticket"
+          get "/api/v1/users/#{user.id}/tickets/#{ticket.id}/subtickets"
           expect(response).to have_http_status(:success)
           expect(response.parsed_body['tickets'].count).to eq(15)
         end
