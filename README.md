@@ -4,7 +4,8 @@
 ## Make it work !
 
 * Good news! the project is dockerized so count to 3 and this section will be done
-* After forking the repo, run `docker-compose up --build`
+* After forking the repo, copy the `EXAMPLE.env` file to be the `.env`
+* run `docker-compose up --build`
 * We have 2 docker service
 
     i. **Ticketer** -> Backend app
@@ -16,16 +17,23 @@
 * running the tests using `docker-compose exec  ticketer rspec`
 
 ## Backend Routes
-
+### Tickets
 * Routes are following REST, so you can see all user tickets at `http://localhost:3000/users/:user_id/tickets`
 * You can also create a new ticket at POST `http://localhost:3000/users/:user_id/tickets`
 * You can also update a ticket at PUT `http://localhost:3000/users/:user_id/tickets/:ticket_id`
+* You can also get a ticket at GET `http://localhost:3000/users/:user_id/tickets/:ticket_id`
 * You can also delete a ticket at DELETE `http://localhost:3000/users/:user_id/tickets/:ticket_id`
 
+### Users
+
+* You can also create a new user at POST `http://localhost:3000/users`
+* You can also update a user at PUT `http://localhost:3000/users/:user_id`
+* You can also get a user at GET `http://localhost:3000/users/:user_id`
+* You can also delete a user at DELETE `http://localhost:3000/users/:user_id`
 ## Frontend Routes
 
 * You can see tickets list at `http://localhost:3001/users/:user_id/tickets`
-* Click on the pen icon to edit the ticket
+* Click on the pen icon to edit the ticket or using `http://localhost:3001/users/:user_id/tickets/:ticket_id/edit` 
 * Click on the New button for new ticket
 
 ![2.png](2.png)
@@ -49,3 +57,6 @@
 * Refactor the frontend code
 * Add More paths for the tests cases
 * Add more routes for the frontend and the rest of CRUD operations
+* Add Pagination for the backend
+* Combine the Virtual scroller with the API
+* Add a real Loading component for the frontend
