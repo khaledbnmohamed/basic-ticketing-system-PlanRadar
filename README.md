@@ -16,6 +16,8 @@
 
 * running the tests using `docker-compose exec  ticketer rspec`
 
+
+
 ## Backend Routes
 ### Tickets
 * Routes are following REST, so you can see all user tickets at `http://localhost:3000/users/:user_id/tickets`
@@ -50,7 +52,10 @@
 * Rails
 * ReactJS
 
+## Toublehooting
 
+* in the `APP_USER_ID` make sure you have the correct uid of your machine by using the command `id`
+* Delete any cached/temp files
 ## TODO
 
 * Finalize the [**API DOCUMENTATION**](http://localhost:3000/api-docs) if you are not familiar with Swagger Api Documentation (hopefully you are because this [Introductory video](https://www.youtube.com/watch?v=7MS1Z_1c5CU) is 10 mins long :) )
