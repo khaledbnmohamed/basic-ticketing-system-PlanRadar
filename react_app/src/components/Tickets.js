@@ -3,7 +3,6 @@ import VirtualScroll from "./VirtualScroller/VirtualScroll";
 
 function Tickets({ tickets, onTglStatus }) {
   const row_height = 150;
-  const height_margin = 5;
 
   let ticketsArray = [];
   tickets.map((ticket) => {
@@ -25,7 +24,7 @@ function Tickets({ tickets, onTglStatus }) {
   return (
     <div className="row">
       <VirtualScroll
-        height={window.innerHeight + height_margin}
+        height={window.innerHeight}
         totalElements={ticketsArray.length}
         rowHeight={row_height}
         items={ticketsArray}
