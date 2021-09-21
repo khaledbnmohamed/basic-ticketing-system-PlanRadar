@@ -1,8 +1,4 @@
-import { useEffect } from "react";
 import Ticket from "./Ticket";
-import VirtualScrollChild from "./VirtualScroller/VirtualScrollChild";
-import "./VirtualScroller/VirtualScroll.css";
-import { useInView } from "react-intersection-observer";
 import VirtualScroll from "./VirtualScroller/VirtualScroll";
 
 function Tickets({ tickets, onTglStatus }) {
