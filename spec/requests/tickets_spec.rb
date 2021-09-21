@@ -40,7 +40,7 @@ RSpec.describe '/api/v1/users/user_id/tickets/ticket_id/' do
                    title: 'First ticket',
                    description: 'desc',
                    due_date: '1-1-2025',
-                   status: 'pending'
+                   status: 'pending',
                    parent_id: "1",
                    assignee_id: "1"
                  }

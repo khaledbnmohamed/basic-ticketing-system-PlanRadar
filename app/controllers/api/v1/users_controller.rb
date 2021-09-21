@@ -7,6 +7,8 @@ module Api::V1
     # GET /users
     def index
       @users = User.all
+      render json: { users: UserBlueprint.render_as_json(@users) }
+
     end
 
     # GET /users/1
@@ -43,12 +45,12 @@ module Api::V1
 
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find_by!(number: params[:token])
+      @user = User.find_by!(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name,:mobile, :email, :password_diget, :password_confirmation, :password)
     end
   end
 end

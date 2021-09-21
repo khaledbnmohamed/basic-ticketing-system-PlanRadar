@@ -10,7 +10,7 @@
 
     i. **Ticketer** -> Backend app
 
-    ii. **Ticketer-frontend** -> Frontend app
+    ii. **Ticketer_frontend** -> Frontend app
 * You can now access the frontend app at `http://localhost:3001/users/:user_id/tickets/:ticket_id`
 * When the server is up and running use `http://localhost:3000` to check that everything looks good
 
