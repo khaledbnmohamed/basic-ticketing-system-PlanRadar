@@ -29,5 +29,62 @@ input {
 }
 
 .card {
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px 0px 0px;
+  height: 300px;
+}
+
+.edit-card {
+  margin: 10px 30px 30px 30px;
+  height: 400px;
+}
+
+.subcard {
+  margin: 0px 0px 0px 0px;
+  height: 100px;
+
+}
+
+.row {
+  width: 100vw;
+}
+
+.subticket-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  margin: 16px;
+}
+
+.link {
+  color: rgb(255, 255, 255);
+
+}
+
+
+.navbar {
+  display: flex;
+  align-items: center;
+  
+  background: rgb(0, 153, 102);
+  color: white;
+  font-family: Helvetica;
+  font-weight: 300;
+}
+
+.navbar__title {
+  margin-right: auto;
+  font-size: 150%;
+  padding: 12px 16px;
+}
+
+.navbar__item {
+  padding: 16px 16px;
+  cursor: pointer;
+  vertical-align: middle;
 }
