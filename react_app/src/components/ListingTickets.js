@@ -1,6 +1,3 @@
-import "../App.css";
-import "../assets/styles.css";
-
 import { useState, useEffect } from "react";
 import Tickets from "./Tickets";
 import TicketEdit from "./TicketEdit";
@@ -13,29 +10,17 @@ function ListingTickets() {
   const [tickets, setTickets] = useState([]);
 
   const getTickets = async (user_id) => {
-    const resp = await listTickets({user_id});
+    const resp = await listTickets({ user_id });
     if (resp.hasError) {
-      console.log("error")
+      console.log("error");
     } else {
-      setTickets(resp.data['tickets'])
+      setTickets(resp.data["tickets"]);
     }
   };
 
   useEffect(() => {
     getTickets(user_id);
   }, [user_id]);
-
-  const onTglStatus = (ticket) => {
-    console.log("completing ticket");
-    setTickets(
-      tickets.map((chkTicket) => {
-        chkTicket.complete =
-          ticket.id === chkTicket.id ? !chkTicket.complete : chkTicket.complete;
-        return chkTicket;
-      })
-    );
-  };
-
 
   const [showTicketEdit, setShowTicketEdit] = useState(false);
 
@@ -47,19 +32,22 @@ function ListingTickets() {
     ]);
   };
 
-  return (
+  return tickets.length > 0 ? (
     <div className="ListingTickets">
       <div className="container">
-          <button
-            className="button outline"
-            onClick={() => setShowTicketEdit(!showTicketEdit)}>
-            {!showTicketEdit && "New"}
-            {showTicketEdit && "➖"}
-          </button>
-        </div>
-        {showTicketEdit && <TicketEdit ticket={{}} onSaveTicket={onSaveTicket} />}
-        <Tickets tickets={tickets} onTglStatus={onTglStatus}></Tickets>
+        <button
+          className="button outline"
+          onClick={() => setShowTicketEdit(!showTicketEdit)}
+        >
+          {!showTicketEdit && "New"}
+          {showTicketEdit && "➖"}
+        </button>
       </div>
+      {showTicketEdit && <TicketEdit ticket={{}} onSaveTicket={onSaveTicket} />}
+      <Tickets tickets={tickets} onTglStatus={false}></Tickets>
+    </div>
+  ) : (
+    "Loading"
   );
 }
 

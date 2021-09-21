@@ -14,9 +14,11 @@ function TicketEdit({ ticket = {}, onSaveTicket }) {
     const ticket_params = {
       title,
       description,
-      due_date
-    }
-    const resp = id ? await editTicket(ticket_params, {user_id, ticket_id: id}) : await createTicket(ticket_params, {user_id});
+      due_date,
+    };
+    const resp = id
+      ? await editTicket(ticket_params, { user_id, ticket_id: id })
+      : await createTicket(ticket_params, { user_id });
     if (resp.hasError) {
       console.log("error", resp);
     } else {
@@ -42,8 +44,8 @@ function TicketEdit({ ticket = {}, onSaveTicket }) {
   }, [id]);
 
   return (
-    <div className="card">
-      <h3> {id ? "Edit Ticket" : "Add Ticket" }</h3>
+    <div className="edit-card ">
+      <h3> {id ? "Edit Ticket" : "Add Ticket"}</h3>
       <form>
         <label htmlFor="Title">Title</label>
         <input

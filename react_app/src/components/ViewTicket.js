@@ -13,11 +13,11 @@ function ViewTicket() {
   const [ticket, setTicket] = useState(null);
 
   const getTicketData = async (id) => {
-    const resp = await getTicket({user_id, ticket_id: id});
+    const resp = await getTicket({ user_id, ticket_id: id });
     if (resp.hasError) {
-      console.log("error")
+      console.log("error");
     } else {
-      setTicket(resp.data)
+      setTicket(resp.data);
     }
   };
 
@@ -25,15 +25,14 @@ function ViewTicket() {
     getTicketData(id);
   }, [id]);
 
-
-  return (
-    ticket && (
+  return ticket ? (
     <div className="ListingTickets">
-         <div className="container">
-          <Ticket ticket={ticket} onTglStatus={false} />
-          </div>
+      <div className="container">
+        <Ticket ticket={ticket} onTglStatus={false} />
       </div>
-    )
+    </div>
+  ) : (
+    "Loading"
   );
 }
 

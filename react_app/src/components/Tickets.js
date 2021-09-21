@@ -1,46 +1,39 @@
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import Ticket from "./Ticket";
 import VirtualScrollChild from "./VirtualScroller/VirtualScrollChild";
-import './VirtualScroller/VirtualScroll.css';
-import {useInView} from "react-intersection-observer";
-
+import "./VirtualScroller/VirtualScroll.css";
+import { useInView } from "react-intersection-observer";
+import VirtualScroll from "./VirtualScroller/VirtualScroll";
 
 function Tickets({ tickets, onTglStatus }) {
-  const [lastRowRef, lastRowInView] = useInView();
-  let ticketsArray = []
-  tickets.map(ticket => ticketsArray.push(<Ticket ticket={ticket} onTglStatus={onTglStatus} />))
-  const renderRows = () => {
-    return ticketsArray.map((child,i) => {
-        if (i === tickets.length - 1) {
-            return (
-              <div ref={lastRowRef} key={i}>
-                <VirtualScrollChild height={150}>
-                        {child}
-                    </VirtualScrollChild>
-                </div>
-            );
-        }
-        return (
-          <VirtualScrollChild key={i} height={150}>
-              {child}
-          </VirtualScrollChild>
-        );
-    });
-};
+  const row_height = 150;
 
-    // if last row is in view, call the last row handler
-    useEffect(() => {
-      if (lastRowInView) { console.log("last row in view")};
-  }, [lastRowInView]);
-
+  let ticketsArray = [];
+  tickets.map((ticket) => {
+    ticketsArray.push(
+      <Ticket ticket={ticket} onTglStatus={onTglStatus} showSubTicket={false} />
+    );
+    ticket.subtickets.map((subticket) =>
+      ticketsArray.push(
+        <Ticket
+          ticket={subticket}
+          subticket
+          onTglStatus={onTglStatus}
+          showSubTicket={false}
+        />
+      )
+    );
+  });
 
   return (
-    <div className="card">
-      <div className="row">
-          <div className={"virtual-scroll-container"}>
-            {renderRows()}
-            </div>
-        </div>
+    <div className="row">
+      <VirtualScroll
+        height={window.innerHeight}
+        totalElements={ticketsArray.length}
+        rowHeight={row_height}
+        items={ticketsArray}
+        visibleItemsLength={50}
+      />
     </div>
   );
 }
