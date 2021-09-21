@@ -22,7 +22,31 @@
 ### Tickets
 * Routes are following REST, so you can see all user tickets at `http://localhost:3000/users/:user_id/tickets`
 * You can also create a new ticket at POST `http://localhost:3000/users/:user_id/tickets`
+
+    Using the following param
+    ```
+    ticket: {
+    title: 'First ticket',
+    description: 'desc',
+    due_date: '1-1-2025',
+    status: 'pending',
+    parent_id: "1",
+    assignee_id: "1"
+    }
+    ```
 * You can also update a ticket at PUT `http://localhost:3000/users/:user_id/tickets/:ticket_id`
+
+    Using the following param
+    ```
+    ticket: {
+    title: 'Updated ticket',
+    description: 'desc',
+    due_date: '1-1-2025',
+    status: 'pending',
+    parent_id: "1",
+    assignee_id: "1"
+    }
+    ```
 * You can also get a ticket at GET `http://localhost:3000/users/:user_id/tickets/:ticket_id`
 * You can also delete a ticket at DELETE `http://localhost:3000/users/:user_id/tickets/:ticket_id`
 

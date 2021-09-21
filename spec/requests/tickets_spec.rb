@@ -25,7 +25,6 @@ RSpec.describe '/api/v1/users/user_id/tickets/ticket_id/' do
       parameter name: :ticket, in: :body, schema: {
         type: :object,
         properties: {
-          ticket_price: { type: :string },
           user_id: { type: :string }
 
         }
@@ -42,6 +41,8 @@ RSpec.describe '/api/v1/users/user_id/tickets/ticket_id/' do
                    description: 'desc',
                    due_date: '1-1-2025',
                    status: 'pending'
+                   parent_id: "1",
+                   assignee_id: "1"
                  }
                }
           expect(response).to have_http_status(:success)
