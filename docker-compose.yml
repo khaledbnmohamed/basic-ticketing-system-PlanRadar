@@ -22,12 +22,7 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - .:/home/ticketer/ticketer:cached
-      - ~/.ssh:/home/ticketer/.ssh
-      - rails_cache:/home/ticketer/ticketer/tmp/cache
-      - bundle:/bundle
-      - node_modules:/home/ticketer/ticketer/node_modules
-      - packs:/home/ticketer/ticketer/public/packs
+      - .:/app
     tmpfs:
       - /tmp
     env_file: .env
